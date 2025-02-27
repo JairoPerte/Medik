@@ -17,9 +17,9 @@ class Cita_Medica extends Model
         'hora',
         'hora_ini',
         'hora_fin',
-        'Doctor_id',
-        'Consulta_id',
-        'Usuario_id',
+        'doctor_id',
+        'consulta_id',
+        'usuario_id',
     ];
 
     public function doctor()

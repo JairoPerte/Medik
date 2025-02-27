@@ -17,7 +17,7 @@ class Consulta extends Model
         'centro_medico_id'
     ];
 
-    public function centroMedico()
+    public function centro_medico()
     {
         return $this->belongsTo(Centro_Medico::class);
     }

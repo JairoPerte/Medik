@@ -13,8 +13,8 @@ class Receta extends Model
 
     protected $fillable = [
         'fechaini',
-        'fechaCad',
-        'Cita_Medica_id',
+        'fechacad',
+        'cita_medica_id',
     ];
 
     public function cita_medica()
