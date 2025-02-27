@@ -24,7 +24,7 @@ class Usuario extends Authenticatable
     protected $table = 'usuario';
 
     protected $fillable = [
-        'id',
+        //Datos del usuario
         'nif',
         'nombre',
         'apellido',
@@ -40,11 +40,11 @@ class Usuario extends Authenticatable
     //Relaciones
     public function Citas()
     {
-        return $this->hasMany(CitaMedica::class, 'Usuario_idUsuario');
+        return $this->hasMany(Cita_Medica::class, 'Usuario_id');
     }
 
     function Doctor(){
-        return $this->belongsTo(Doctor::class, 'Doctor_idDoctor');
+        return $this->belongsTo(Doctor::class, 'Doctor_id');
     }
 
     /**
