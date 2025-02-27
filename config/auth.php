@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        //RELLENAR CUANDO ESTE
+        // 'admin' => [ // Nuevo guard para administradores
+        //     'driver' => 'session',
+        //     'provider' => 'admins',
+        // ],
     ],
 
     /*
@@ -64,6 +69,12 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+
+        //RELLENAR CUANDO ESTE
+        // 'admins' => [ // Proveedor de administradores
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Administrador::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',
