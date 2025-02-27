@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use HasApiTokens;
 
@@ -20,16 +21,31 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'usuario';
+
     protected $fillable = [
-        'name',
+        //Datos del usuario
+        'nif',
+        'nombre',
+        'apellido',
+        'edad',
+        'peso',
+        'altura',
+        'numtel',
         'email',
         'password',
+        'idMedCab'
     ];
+
+    //Relaciones
+    public function Citas()
+    {
+        return $this->hasMany(Cita_Medica::class, 'Usuario_id');
+    }
+
+    function Doctor(){
+        return $this->belongsTo(Doctor::class, 'Doctor_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
