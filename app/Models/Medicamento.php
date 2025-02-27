@@ -20,4 +20,11 @@ class Medicamento extends Model
         'aplicacion',
     ];
 
+    public function recetas()
+    {
+        return $this->belongsToMany(Receta::class, 'medicamento_receta')
+            ->withPivot('cantidad', 'horario')
+            ->withTimestamps();
+    }
+
 }

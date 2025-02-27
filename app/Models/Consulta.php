@@ -22,4 +22,11 @@ class Consulta extends Model
         return $this->belongsTo(Centro_Medico::class);
     }
 
+    public function doctores()
+    {
+        return $this->belongsToMany(Doctor::class, 'consulta_doctor')
+            ->withPivot('horario', 'pago', 'trabaja', 'especialidad')
+            ->withTimestamps();
+    }
+
 }

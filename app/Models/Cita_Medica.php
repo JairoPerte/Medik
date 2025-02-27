@@ -36,4 +36,9 @@ class Cita_Medica extends Model
         return $this->belongsTo(Usuario::class);
     }
 
+    public function receta()
+    {
+        return $this->hasOne(Receta::class);
+    }
+
 }
