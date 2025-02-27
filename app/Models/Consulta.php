@@ -19,7 +19,7 @@ class Consulta extends Model
 
     public function centroMedico()
     {
-        return $this->belongsTo(CentroMedico::class);
+        return $this->belongsTo(Centro_Medico::class);
     }
 
 }
