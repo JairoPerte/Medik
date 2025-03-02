@@ -38,13 +38,14 @@ class Usuario extends Authenticatable
     ];
 
     //Relaciones
-    public function Citas()
+    public function citas()
     {
-        return $this->hasMany(Cita_Medica::class, 'Usuario_id');
+        return $this->hasMany(Cita_Medica::class, 'usuario_id');
     }
 
-    function Doctor(){
-        return $this->belongsTo(Doctor::class, 'Doctor_id');
+    function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 
     /**

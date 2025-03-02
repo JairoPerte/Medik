@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Administrador extends Model
+
+class Administrador extends Authenticatable
 {
     protected $table = 'Administrador';
 
@@ -15,10 +17,11 @@ class Administrador extends Model
         'edad'
     ];
 
-    //Funciones de relaciones 
-    function Centro_Medico(){
-        return $this->belongsToMany(Centro_Medico::class, 'CentroMedico_has_Administrador', 'Administrador_idAdministrador', 'CentroMedico_idCentroMedico')
-        ->withPivot('horario', 'sueldo', 'trabaja');
+    //Funciones de relaciones
+    function Centro_Medico()
+    {
+        return $this->belongsToMany(Centro_Medico::class, 'admin_centro', 'administrador_id', 'centro_medico_id')
+            ->withPivot('horario', 'sueldo', 'trabaja');
     }
 
     protected $hidden = [
@@ -26,7 +29,7 @@ class Administrador extends Model
         'remember_token'
     ];
 
-        /**
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -38,6 +41,4 @@ class Administrador extends Model
             'password' => 'hashed',
         ];
     }
-
-
 }

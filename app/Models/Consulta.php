@@ -9,7 +9,7 @@ class Consulta extends Model
 {
     use HasFactory;
 
-    protected $table = 'consultas';
+    protected $table = 'consulta';
 
     protected $fillable = [
         'num',
@@ -25,8 +25,6 @@ class Consulta extends Model
     public function doctores()
     {
         return $this->belongsToMany(Doctor::class, 'consulta_doctor')
-            ->withPivot('horario', 'pago', 'trabaja', 'especialidad')
-            ->withTimestamps();
+            ->withPivot('horario', 'pago', 'trabaja', 'especialidad');
     }
-
 }
