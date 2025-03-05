@@ -9,7 +9,7 @@ class Cita_Medica extends Model
 {
     use HasFactory;
 
-    protected $table = 'citas_medicas';
+    protected $table = 'cita_medica';
 
     protected $fillable = [
         'dia',
@@ -40,5 +40,4 @@ class Cita_Medica extends Model
     {
         return $this->hasOne(Receta::class);
     }
-
 }

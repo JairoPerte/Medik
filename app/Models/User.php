@@ -38,13 +38,14 @@ class User extends Authenticatable
     ];
 
     //Relaciones
-    public function Citas()
+    public function citas()
     {
         return $this->hasMany(Cita_Medica::class, 'idMedCab');
     }
 
-    function Doctor(){
-        return $this->belongsTo(Doctor::class, 'Doctor_id');
+    function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 
     /**
@@ -79,5 +80,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id';
     }
 }

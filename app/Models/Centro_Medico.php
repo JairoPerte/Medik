@@ -16,8 +16,9 @@ class Centro_Medico extends Model
     ];
 
     //Funciones de relaciones
-    function Administrador(){
-        return $this->belongsToMany(Administrador::class, 'admin_centro', 'CentroMedico_id', 'Administrador_id')
+    function administrador()
+    {
+        return $this->belongsToMany(Administrador::class, 'admin_centro', 'centro_medico_id', 'administrador_id')
             ->withPivot('horario', 'sueldo', 'trabaja');
     }
 }

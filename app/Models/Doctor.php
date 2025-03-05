@@ -20,18 +20,20 @@ class Doctor extends Model
         'numtel'
     ];
 
-    //Relaciones Doctor 
-    function CitaMedica(){
+    //Relaciones Doctor
+    function citaMedica()
+    {
         return $this->hasMany(Cita_Medica::class);
     }
 
-    function Usuario(){
+    function usuario()
+    {
         return $this->hasOne(User::class);
     }
 
-    function Consustas(){
-        return $this->belongsToMany(Consulta::class, 'consulta_doctor', 'Doctor_id', 'Consulta_id')
-        ->withPivot('pago', 'horario', 'trabaja', 'especialidad');
+    function consultas()
+    {
+        return $this->belongsToMany(Consulta::class, 'consulta_doctor', 'doctor_id', 'consulta_id')
+            ->withPivot('pago', 'horario', 'trabaja', 'especialidad');
     }
-
 }

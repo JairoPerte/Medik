@@ -38,13 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'usuarios',
         ],
-        //RELLENAR CUANDO ESTE
-        // 'admin' => [ // Nuevo guard para administradores
-        //     'driver' => 'session',
-        //     'provider' => 'admins',
-        // ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'administradores',
+        ],
     ],
 
     /*
@@ -65,16 +64,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'usuarios' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', App\Models\Usuario::class),
         ],
 
-        //RELLENAR CUANDO ESTE
-        // 'admins' => [ // Proveedor de administradores
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Administrador::class,
-        // ],
+        'administradores' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Administrador::class),
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

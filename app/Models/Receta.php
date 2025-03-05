@@ -17,7 +17,7 @@ class Receta extends Model
         'cita_medica_id',
     ];
 
-    public function cita_medica()
+    public function citaMedica()
     {
         return $this->belongsTo(Cita_Medica::class);
     }
@@ -25,8 +25,6 @@ class Receta extends Model
     public function medicamentos()
     {
         return $this->belongsToMany(Medicamento::class, 'medicamento_receta')
-            ->withPivot('cantidad', 'horario')
-            ->withTimestamps();
+            ->withPivot('cantidad', 'horario');
     }
-
 }
