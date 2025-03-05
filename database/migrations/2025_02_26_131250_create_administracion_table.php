@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-
+        
         Schema::create('sessions_admin', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('admin_id')->nullable()->constrained('administrador')->onDelete('cascade');
@@ -44,8 +44,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administrador');
         Schema::dropIfExists('password_reset_tokens_admin');
         Schema::dropIfExists('sessions_admin');
+        Schema::dropIfExists('administrador');
     }
 };

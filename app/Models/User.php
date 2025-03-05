@@ -11,7 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class Usuario extends Authenticatable
+class User extends Authenticatable
 {
     use HasApiTokens;
 
@@ -21,12 +21,12 @@ class Usuario extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected $table = 'usuario';
+    protected $table = 'users';
 
     protected $fillable = [
         //Datos del usuario
         'nif',
-        'nombre',
+        'name',
         'apellido',
         'edad',
         'peso',
@@ -40,7 +40,7 @@ class Usuario extends Authenticatable
     //Relaciones
     public function Citas()
     {
-        return $this->hasMany(Cita_Medica::class, 'Usuario_id');
+        return $this->hasMany(Cita_Medica::class, 'idMedCab');
     }
 
     function Doctor(){

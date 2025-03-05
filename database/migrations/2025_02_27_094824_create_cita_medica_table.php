@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time("hora_fin")->nullable();
             $table->foreignId("doctor_id")->constrained("doctor")->onDelete("cascade");
             $table->foreignId("consulta_id")->constrained("consulta")->onDelete("cascade");
-            $table->foreignId("usuario_id")->constrained("usuario")->onDelete("cascade");
+            $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
             $table->timestamps();
         });
     }
