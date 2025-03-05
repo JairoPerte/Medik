@@ -31,7 +31,10 @@ return new class extends Migration
 
         Schema::create('sessions_admin', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('admin_id')->nullable()->constrained('administrador')->onDelete('cascade');
+            $table->foreignId('admin_id')
+                ->nullable()
+                ->constrained('administrador')
+                ->onDelete('cascade');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -44,8 +47,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administrador');
-        Schema::dropIfExists('password_reset_tokens_admin');
         Schema::dropIfExists('sessions_admin');
+        Schema::dropIfExists('password_reset_tokens_admin');
+        Schema::dropIfExists('administrador');
     }
 };

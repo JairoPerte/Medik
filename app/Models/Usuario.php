@@ -81,4 +81,9 @@ class Usuario extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
 }
