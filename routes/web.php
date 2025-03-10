@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultaController;
-use App\Http\Controllers\CentroMedicoController;
+use App\Http\Controllers\Centro_MedicoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,5 +18,23 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('centros', CentroMedicoController::class);
-Route::resource('consultas', ConsultaController::class);
+Route::prefix('consultas')->group(function () {
+    Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
+    Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
+    Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
+    Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
+    Route::get('/{consulta}/edit', [ConsultaController::class, 'edit'])->name('consultas.edit');
+    Route::put('/{consulta}', [ConsultaController::class, 'update'])->name('consultas.update');
+    Route::delete('/{consulta}', [ConsultaController::class, 'destroy'])->name('consultas.destroy');
+});
+
+Route::prefix('centros')->group(function () {
+    Route::get('/', [Centro_MedicoController::class, 'index'])->name('centros.index');
+    Route::get('/create', [Centro_MedicoController::class, 'create'])->name('centros.create');
+    Route::post('/', [Centro_MedicoController::class, 'store'])->name('centros.store');
+    Route::get('/{centroMedico}', [Centro_MedicoController::class, 'show'])->name('centros.show');
+    Route::get('/{centroMedico}/edit', [Centro_MedicoController::class, 'edit'])->name('centros.edit');
+    Route::put('/{centroMedico}', [Centro_MedicoController::class, 'update'])->name('centros.update');
+    Route::delete('/{centroMedico}', [Centro_MedicoController::class, 'destroy'])->name('centros.destroy');
+});
+

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Centro_Medico;
 use Illuminate\Http\Request;
 
-class CentroMedicoController extends Controller
+class Centro_MedicoController extends Controller
 {
     public function index()
     {
@@ -30,14 +31,14 @@ class CentroMedicoController extends Controller
         return redirect()->route('centros.index')->with('success', 'Centro Médico creado correctamente.');
     }
 
-    public function show(Centro_Medico $centroMedico)
-    {
-        return view('centros.show', compact('centroMedico'));
-    }
-
     public function edit(Centro_Medico $centroMedico)
     {
         return view('centros.edit', compact('centroMedico'));
+    }
+
+    public function show(Centro_Medico $centroMedico)
+    {
+        return view('centros.show', compact('centroMedico'));
     }
 
     public function update(Request $request, Centro_Medico $centroMedico)
@@ -60,4 +61,3 @@ class CentroMedicoController extends Controller
         return redirect()->route('centros.index')->with('success', 'Centro Médico eliminado correctamente.');
     }
 }
-
