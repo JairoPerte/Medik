@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('administrador', function (Blueprint $table) {
             $table->id();
             $table->string("nif", 10)->unique();
-            $table->string('nombre', 40);
+            $table->string('name', 40);
             $table->string('apellido', 60);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -28,10 +28,10 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-        
+
         Schema::create('sessions_admin', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('admin_id')
+            $table->foreignId('user_id')
                 ->nullable()
                 ->constrained('administrador')
                 ->onDelete('cascade');

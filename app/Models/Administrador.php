@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Administrador extends Authenticatable
 {
-    protected $table = 'Administrador';
+    use HasFactory;
+    use Notifiable;
+
+    protected $table = 'administrador';
+    protected $guard = 'admin';
+    protected $guarded = [];
 
     protected $fillable = [
         'nif',

@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('cita_medica', function (Blueprint $table) {
             $table->id();
-            $table->date("dia");
             $table->unsignedTinyInteger("orden");
-            $table->time("hora");
+            $table->dateTime("fecha_hora");
             $table->time("hora_ini")->nullable();
             $table->time("hora_fin")->nullable();
             $table->foreignId("doctor_id")->constrained("doctor")->onDelete("cascade");
             $table->foreignId("consulta_id")->constrained("consulta")->onDelete("cascade");
-            $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
+            $table->foreignId("user_id")->nullable()->constrained("users")->onDelete("cascade");
             $table->timestamps();
         });
     }
