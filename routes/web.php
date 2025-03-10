@@ -19,15 +19,27 @@ Route::middleware([
 });
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return "Hola";
-    })->name('admin.dashboard');
+    /**
+     * PONER AQUÍ LAS RUTAS QUE SOLO PUEDEN ACCEDER LOS ADMINISTRADORES (ADMIN)
+     *
+     * POR EJEMPLO:
+     *
+     * Route::get('/admin/dashboard', function () {
+     *   return "Hola";
+     * })->name('admin.dashboard');
+     */
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {
-    Route::get('/web/dashboard', function () {
-        return "Hola";
-    })->name('admin.dashboard');
+    /**
+     * PONER AQUÍ LAS RUTAS QUE SOLO PUEDEN ACCEDER LOS USUARIOS (WEB)
+     *
+     * POR EJEMPLO:
+     *
+     * Route::get('/web/dashboard', function () {
+     *   return "Hola";
+     * })->name('web.dashboard');
+     */
 });
 
 Route::prefix('consultas')->group(function () {
