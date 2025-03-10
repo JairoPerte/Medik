@@ -5,7 +5,7 @@ use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\Centro_MedicoController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return auth()->guard("sanctum")->check() ? redirect('/dashboard') : view('welcome');
 });
 
 Route::middleware([
@@ -37,4 +37,3 @@ Route::prefix('centros')->group(function () {
     Route::put('/{centroMedico}', [Centro_MedicoController::class, 'update'])->name('centros.update');
     Route::delete('/{centroMedico}', [Centro_MedicoController::class, 'destroy'])->name('centros.destroy');
 });
-

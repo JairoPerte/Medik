@@ -1,5 +1,7 @@
 <?php
 
+use \Illuminate\Session\SessionManager;
+
 return [
 
     /*
@@ -38,11 +40,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'usuarios',
+            'provider' => 'users',
         ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'administradores',
+            'provider' => 'admins'
         ],
     ],
 
@@ -64,14 +66,14 @@ return [
     */
 
     'providers' => [
-        'usuarios' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Usuario::class),
+            'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        'administradores' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Administrador::class),
+            'model' => App\Models\Administrador::class,
         ],
 
         // 'users' => [
@@ -102,6 +104,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
