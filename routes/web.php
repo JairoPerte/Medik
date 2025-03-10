@@ -18,6 +18,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware(['auth:admin', 'verified'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return "Hola";
+    })->name('admin.dashboard');
+});
+
+Route::middleware(['auth:web', 'verified'])->group(function () {
+    Route::get('/web/dashboard', function () {
+        return "Hola";
+    })->name('admin.dashboard');
+});
+
 Route::prefix('consultas')->group(function () {
     Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
     Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
