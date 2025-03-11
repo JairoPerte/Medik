@@ -74,7 +74,7 @@
                             @foreach ($doctores as $doctor)
                                 <option value="{{ $doctor->id }}"
                                     {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>
-                                    {{ $doctor->nombre }}
+                                    {{ $doctor->nif }}
                                 </option>
                             @endforeach
                         </select>
@@ -110,7 +110,7 @@
                             @foreach ($usersM as $userM)
                                 <option value="{{ $userM->id }}"
                                     {{ old('userM_id') == $userM->id ? 'selected' : '' }}>
-                                    {{ $userM->name }}
+                                    {{ $userM->nif }}
                                 </option>
                             @endforeach
                         </select>
