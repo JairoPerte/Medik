@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-app-layout>
     <h1>Detalles del Centro Médico</h1>
     <p><strong>ID:</strong> {{ $centroMedico->id }}</p>
     <p><strong>Nombre:</strong> {{ $centroMedico->nombre }}</p>
@@ -15,4 +16,5 @@
         @method('DELETE')
         <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar?')">Eliminar</button>
     </form>
+</x-app-layout>
 @endsection

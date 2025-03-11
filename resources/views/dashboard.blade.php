@@ -67,12 +67,6 @@
                             color: black
                         }
                     </style>
-
-                    <script>
-                        let form = document.getElementById("obtener-cita").addEventListener("submit", (evento) => {
-                            evento.preventDefault();
-                        });
-                    </script>
                 @endadmin
             </div>
         </div>

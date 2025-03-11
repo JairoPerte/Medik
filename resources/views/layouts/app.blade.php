@@ -17,6 +17,27 @@
 
     <!-- Styles -->
     @livewireStyles
+    <style>
+        .bg-white {
+            background-color: #1f2937;
+        }
+
+        .font-bold {
+            color: #d1d5db;
+        }
+
+        .text-gray-700 {
+            color: #9a9b9e;
+        }
+
+        .text-green-500.ml-2 {
+            color: yellow
+        }
+
+        td.border.px-4.py-2 {
+            color: #9a9b9e;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased">

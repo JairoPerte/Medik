@@ -6,6 +6,10 @@ use App\Http\Controllers\Centro_MedicoController;
 use App\Http\Controllers\TwilioController;
 
 use App\Models\Cita_Medica;
+use App\Http\Controllers\MedicamentoController;
+use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\CitaMedicaController;
+use App\Http\Controllers\DoctorController;
 
 Route::get('/', function () {
     return auth()->guard("sanctum")->check() ? redirect('/dashboard') : view('welcome');
@@ -16,10 +20,32 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    /**
+     * PONER AQUÍ LAS RUTAS QUE PUEDEN ACCEDER TODOS
+     *
+     * POR EJEMPLO:
+     *
+     * Route::get('/dashboard', function () {
+     *   return "Hola";
+     * })->name('dashboard');
+     */
+
     Route::get('/dashboard', function () {
         $citas = Cita_Medica::all();
         return view('dashboard', compact('citas'));
     })->name('dashboard');
+    Route::prefix('consultas')->group(function () {
+        Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
+        Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
+        Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
+        Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
+    });
+    Route::prefix('doctores')->group(function () {
+        Route::get('/{doctor}', [DoctorController::class, 'show'])->name('doctores.show');
+        Route::get('/', [DoctorController::class, 'index'])->name('doctores.index');
+        Route::get('/create', [DoctorController::class, 'create'])->name('doctores.create');
+        Route::post('/', [DoctorController::class, 'store'])->name('doctores.store');
+    });
 });
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
@@ -34,6 +60,20 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
      *   return "Hola";
      * })->name('admin.dashboard');
      */
+    Route::prefix('consultas')->group(function () {
+        //Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
+        //Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
+        Route::get('/{consulta}/edit', [ConsultaController::class, 'edit'])->name('consultas.edit');
+        Route::put('/{consulta}', [ConsultaController::class, 'update'])->name('consultas.update');
+        Route::delete('/{consulta}', [ConsultaController::class, 'destroy'])->name('consultas.destroy');
+    });
+    Route::prefix('doctores')->group(function () {
+        Route::get('/{doctor}/edit', [DoctorController::class, 'edit'])->name('doctores.edit');
+        Route::put('/{doctor}', [DoctorController::class, 'update'])->name('doctores.update');
+        Route::delete('/{doctor}', [DoctorController::class, 'destroy'])->name('doctores.destroy');
+    });
+    Route::get('/citas/create', [CitaMedicaController::class, 'create'])->name('citas.create');
+    Route::post('/citas', [CitaMedicaController::class, 'store'])->name('citas.store');
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {
@@ -47,24 +87,4 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
      * })->name('web.dashboard');
      */
     Route::post('/send-sms', [TwilioController::class, 'sendSmsToUser'])->name('send.sms');
-});
-
-Route::prefix('consultas')->group(function () {
-    Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
-    Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
-    Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
-    Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
-    Route::get('/{consulta}/edit', [ConsultaController::class, 'edit'])->name('consultas.edit');
-    Route::put('/{consulta}', [ConsultaController::class, 'update'])->name('consultas.update');
-    Route::delete('/{consulta}', [ConsultaController::class, 'destroy'])->name('consultas.destroy');
-});
-
-Route::prefix('centros')->group(function () {
-    Route::get('/', [Centro_MedicoController::class, 'index'])->name('centros.index');
-    Route::get('/create', [Centro_MedicoController::class, 'create'])->name('centros.create');
-    Route::post('/', [Centro_MedicoController::class, 'store'])->name('centros.store');
-    Route::get('/{centroMedico}', [Centro_MedicoController::class, 'show'])->name('centros.show');
-    Route::get('/{centroMedico}/edit', [Centro_MedicoController::class, 'edit'])->name('centros.edit');
-    Route::put('/{centroMedico}', [Centro_MedicoController::class, 'update'])->name('centros.update');
-    Route::delete('/{centroMedico}', [Centro_MedicoController::class, 'destroy'])->name('centros.destroy');
 });

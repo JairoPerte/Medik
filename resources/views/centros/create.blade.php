@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-app-layout>
     <h1>Crear Nuevo Centro Médico</h1>
     <form action="{{ route('centros.store') }}" method="POST">
         @csrf
@@ -15,4 +16,5 @@
 
         <button type="submit">Guardar</button>
     </form>
+</x-app-layout>
 @endsection
