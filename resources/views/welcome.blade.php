@@ -45,9 +45,10 @@
     </header>
     <div
         class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row bg-[#111827]">
-            <div
-                class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-[#1f2937] text-white shadow rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
+        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row bg-[#111827]"
+            style="background-color: #111827">
+            <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-[#1f2937] text-white shadow rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none"
+                style="background-color: #1f2937">
                 <h1 class="mb-1 font-medium text-lg">Medik</h1>
                 <p class="mb-2 text-[#d1d5db]">La página oficial para organizar tus citas médicas. <br> Accede
                     fácilmente a tu historial médico, programa consultas con especialistas y gestiona tus citas de forma
@@ -88,14 +89,14 @@
                 </ul>
                 <ul class="flex gap-3 text-sm leading-normal">
                     <li>
-                        <a href="#"
+                        <a href="/register"
                             class="inline-block bg-[#22c55e] hover:bg-[#16a34a] px-5 py-1.5 rounded-sm border border-[#16a34a] text-white text-sm leading-normal">
                             Registrarse ahora
                         </a>
                     </li>
                 </ul>
             </div>
-            <div
+            <div style="color:#d1fae5"
                 class="bg-[#d1fae5] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden flex items-center justify-center text-[#065f46] text-lg font-semibold">
                 ¡Regístrate y pide cita ya!
             </div>

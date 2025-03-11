@@ -12,28 +12,28 @@ class Cita_Medica extends Model
     protected $table = 'cita_medica';
 
     protected $fillable = [
-        'dia',
         'orden',
-        'hora',
+        'fecha_hora',
         'hora_ini',
         'hora_fin',
         'doctor_id',
         'consulta_id',
-        'usuario_id',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
+
     public function consulta()
     {
         return $this->belongsTo(Consulta::class);
-    }
-
-    public function usuario()
-    {
-        return $this->belongsTo(Usuario::class);
     }
 
     public function receta()

@@ -9,18 +9,12 @@ class Receta extends Model
 {
     use HasFactory;
 
-    protected $table = 'consultas';
+    protected $table = 'receta';
 
     protected $fillable = [
         'fechaini',
-        'fechacad',
-        'cita_medica_id',
+        'fechacad'
     ];
-
-    public function citaMedica()
-    {
-        return $this->belongsTo(Cita_Medica::class);
-    }
 
     public function medicamentos()
     {

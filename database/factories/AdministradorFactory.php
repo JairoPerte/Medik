@@ -23,6 +23,8 @@ class AdministradorFactory extends Factory
             'email' => 'administradorTotal@gmail.com',
             'password' => Hash::make('adminTotal123!'),
             'nif' => '11111111A',
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\Centro_MedicoController;
+use App\Mail\ExampleMail;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return auth()->guard("sanctum")->check() ? redirect('/dashboard') : view('welcome');
@@ -19,6 +21,8 @@ Route::middleware([
 });
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
+    Route::get('/admin/create', [])->name('admin.create');
+    Route::post('/admin', [])->name('admin.store');
     /**
      * PONER AQUÍ LAS RUTAS QUE SOLO PUEDEN ACCEDER LOS ADMINISTRADORES (ADMIN)
      *
