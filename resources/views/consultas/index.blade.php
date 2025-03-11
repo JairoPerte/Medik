@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-app-layout>
     <h1>Lista de Consultas</h1>
     <a href="{{ route('consultas.create') }}">Nueva Consulta</a>
 
@@ -30,4 +31,5 @@
             </tr>
         @endforeach
     </table>
+</x-app-layout>
 @endsection

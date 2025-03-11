@@ -28,7 +28,6 @@ class ConsultaController extends Controller
             'CentroMedico_id' => 'required|exists:centro_medicos,id',
         ]);
 
-        // Guardar solo los datos específicos
         Consulta::create($request->only(['num', 'tipoSala', 'CentroMedico_id']));
 
         return redirect()->route('consultas.index')->with('success', 'Consulta creada correctamente.');
@@ -53,7 +52,6 @@ class ConsultaController extends Controller
             'CentroMedico_idCentroMedico' => 'required|exists:centro_medicos,id',
         ]);
 
-        // Guardar solo los datos específicos
         $consulta->update($request->only(['num', 'tipoSala', 'CentroMedico_idCentroMedico']));
 
         return redirect()->route('consultas.index')->with('success', 'Consulta actualizada correctamente.');

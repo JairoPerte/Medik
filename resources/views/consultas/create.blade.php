@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-app-layout>
     <h1>Crear Nueva Consulta</h1>
     <form action="{{ route('consultas.store') }}" method="POST">
         @csrf
@@ -19,4 +20,5 @@
 
         <button type="submit">Guardar</button>
     </form>
+</x-app-layout>
 @endsection
