@@ -32,9 +32,11 @@ class ConsultaController extends Controller
      */
     public function create()
     {
-        $centrosMedicos = Centro_Medico::all(); // Obtener todos los centros médicos
+        //Obtener todos los centros médicos
+        $centrosMedicos = Centro_Medico::all();
 
-        return view('consultas.create', compact('centrosMedicos')); // Enviar datos a la vista
+        //Enviar datos a la vista
+        return view('consultas.create', compact('centrosMedicos'));
     }
 
     /**
@@ -49,14 +51,14 @@ class ConsultaController extends Controller
             'centro_medico_id' => 'required|exists:centro_medico,id'
         ]);
 
-        // Crear nueva consulta
+        //Crear nueva consulta
         Consulta::create([
             'num' => $request->num,
             'tipoSala' => $request->tipoSala,
             'centro_medico_id' => $request->centro_medico_id
         ]);
 
-        // Redirigir con mensaje de éxito
+        //Redirigir con mensaje de éxito
         return redirect()->route('consultas.index')->with('success', 'Consulta creada correctamente.');
     }
 
@@ -67,7 +69,7 @@ class ConsultaController extends Controller
     public function edit($id)
     {
         $consulta = Consulta::with('centro_medico')->findOrFail($id);
-        $centrosMedicos = Centro_Medico::all(); // Obtener todos los centros médicos
+        $centrosMedicos = Centro_Medico::all(); 
         return view('consultas.edit', compact('consulta', 'centrosMedicos'));
     }
 
