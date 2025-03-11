@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -6,7 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register-admin') }}">
+        <form method="POST" action="{{ route('admin.store') }}">
             @csrf
 
             <div>
@@ -17,8 +17,8 @@
 
             <div class="mt-4">
                 <x-label for="apellido" value="{{ __('Apellido') }}" />
-                <x-input id="apellido" class="block mt-1 w-full" type="text" name="apellido" required
-                    autocomplete="apellido" />
+                <x-input id="apellido" class="block mt-1 w-full" type="text" name="apellido" :value="old('apellido')"
+                    required autocomplete="apellido" />
             </div>
 
             <div class="mt-4">
@@ -41,53 +41,13 @@
 
             <div class="mt-4">
                 <x-label for="nif" value="{{ __('NIF') }}" />
-                <x-input id="nif" class="block mt-1 w-full" type="text" name="nif" required
-                    autocomplete="nif" />
+                <x-input id="nif" class="block mt-1 w-full" type="text" name="nif" :value="old('nif')"
+                    required autocomplete="nif" />
             </div>
-
-            <div class="mt-4">
-                <x-label for="numtel" value="{{ __('Número de telefono') }}" />
-                <x-input id="numtel" class="block mt-1 w-full" type="text" name="numtel" required
-                    autocomplete="numtel" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
-
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                    'terms_of_service' =>
-                                        '<a target="_blank" href="' .
-                                        route('terms.show') .
-                                        '" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
-                                        __('Terms of Service') .
-                                        '</a>',
-                                    'privacy_policy' =>
-                                        '<a target="_blank" href="' .
-                                        route('policy.show') .
-                                        '" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
-                                        __('Privacy Policy') .
-                                        '</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
-                </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
+            <x-button class="ms-4">
+                {{ __('Crear Administrador') }}
+            </x-button>
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-app-layout>

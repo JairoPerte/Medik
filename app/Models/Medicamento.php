@@ -9,7 +9,7 @@ class Medicamento extends Model
 {
     use HasFactory;
 
-    protected $table = 'medicamentos';
+    protected $table = 'medicamento';
 
     protected $fillable = [
         'nombre',
@@ -26,5 +26,4 @@ class Medicamento extends Model
             ->withPivot('cantidad', 'horario')
             ->withTimestamps();
     }
-
 }

@@ -32,6 +32,8 @@ Route::middleware([
 });
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
+    Route::get('/admin/create', [])->name('admin.create');
+    Route::post('/admin', [])->name('admin.store');
     /**
      * PONER AQUÍ LAS RUTAS QUE SOLO PUEDEN ACCEDER LOS ADMINISTRADORES (ADMIN)
      *

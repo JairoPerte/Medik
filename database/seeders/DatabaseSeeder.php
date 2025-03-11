@@ -3,6 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Administrador;
+use App\Models\Centro_Medico;
+use App\Models\Consulta;
+use App\Models\Doctor;
+use App\Models\Medicamento;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Hash;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Administrador::factory()->create();
-        // User::factory(10)->create();
+        Centro_Medico::factory(3)->create();
+        Consulta::factory(10)->create();
+        Doctor::factory(10)->create();
+        Medicamento::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Administrador::factory()->create();
+        User::factory()->create();
     }
 }
