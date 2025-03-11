@@ -29,6 +29,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::prefix('consultas')->group(function () {
+        Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
+        Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create'); // ✅ Movida aquí para acceso general
+        Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
+        Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
+    });
 });
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
@@ -43,6 +49,13 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
      *   return "Hola";
      * })->name('admin.dashboard');
      */
+    Route::prefix('consultas')->group(function () {
+        //Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
+        //Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
+        Route::get('/{consulta}/edit', [ConsultaController::class, 'edit'])->name('consultas.edit');
+        Route::put('/{consulta}', [ConsultaController::class, 'update'])->name('consultas.update');
+        Route::delete('/{consulta}', [ConsultaController::class, 'destroy'])->name('consultas.destroy');
+    });
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {
@@ -55,16 +68,6 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
      *   return "Hola";
      * })->name('web.dashboard');
      */
-});
-
-Route::prefix('consultas')->group(function () {
-    Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
-    Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
-    Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
-    Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
-    Route::get('/{consulta}/edit', [ConsultaController::class, 'edit'])->name('consultas.edit');
-    Route::put('/{consulta}', [ConsultaController::class, 'update'])->name('consultas.update');
-    Route::delete('/{consulta}', [ConsultaController::class, 'destroy'])->name('consultas.destroy');
 });
 
 Route::prefix('centros')->group(function () {

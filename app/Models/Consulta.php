@@ -13,13 +13,13 @@ class Consulta extends Model
 
     protected $fillable = [
         'num',
-        'tipo_sala',
+        'tipoSala',
         'centro_medico_id'
     ];
 
     public function centro_medico()
     {
-        return $this->belongsTo(Centro_Medico::class);
+        return $this->belongsTo(Centro_Medico::class, 'centro_medico_id');
     }
 
     public function doctores()
