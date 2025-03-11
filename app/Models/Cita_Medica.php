@@ -40,4 +40,19 @@ class Cita_Medica extends Model
     {
         return $this->hasOne(Receta::class);
     }
+
+    public function paciente()
+    {
+        return $this->belongsTo(User::class, 'user_id'); 
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo(User::class, 'medico_id');
+    }
+
+    public function centroMedico()
+    {
+        return $this->belongsTo(Centro_Medico::class);
+    }
 }
