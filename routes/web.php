@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\Centro_MedicoController;
-use App\Mail\ExampleMail;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\TwilioController;
+
+use App\Models\Cita_Medica;
 
 Route::get('/', function () {
     return auth()->guard("sanctum")->check() ? redirect('/dashboard') : view('welcome');
@@ -16,7 +17,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $citas = Cita_Medica::all();
+        return view('dashboard', compact('citas'));
     })->name('dashboard');
 });
 
@@ -44,6 +46,7 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
      *   return "Hola";
      * })->name('web.dashboard');
      */
+    Route::post('/send-sms', [TwilioController::class, 'sendSmsToUser'])->name('send.sms');
 });
 
 Route::prefix('consultas')->group(function () {

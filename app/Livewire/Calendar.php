@@ -11,7 +11,6 @@ class Calendar extends Component
 {
     public $citas = [];
 
-
     public function fetchCitas()
     {
         $this->citas = Cita_Medica::where('user_id', Auth::guard("web")->id())->with('doctor')->get()->map(function ($cita) {
@@ -20,13 +19,10 @@ class Calendar extends Component
                 'title' => 'Cita con Dr.' . ($cita->doctor ? $cita->doctor->nombre : 'Desconocido'),
                 'start' => date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_ini)),
                 'end' => date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_fin)),
-                'descripcion' => 'Cita con el/la Doctor@' . ($cita->doctor ? $cita->doctor->nombre : 'Desconocido') . ' empieza a ' . date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_ini)) . ' termina a las ' . date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_fin))
+                'descripcion' => 'Tienes una cita con el/la Doctor@' . ($cita->doctor ? $cita->doctor->nombre : 'Desconocido') . ' empieza a ' . date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_ini)) . ' termina a las ' . date('Y-m-d\TH:i:s', strtotime(date('Y-m-d', strtotime($cita->fecha_hora)) . ' ' . $cita->hora_fin)) . ', ¡no te olvides de venir!'
             ];
         });
     }
-
-
-
 
     public function render()
     {

@@ -4,14 +4,37 @@
     @push('styles')
         <style>
             .fc-event {
-                color: white !important;
                 cursor: pointer;
+            }
+
+            .fc-toolbar-title {
+                color: whitesmoke;
             }
 
             .fc-col-header-cell {
                 background-color: #007bff !important;
                 color: white !important;
                 font-weight: bold;
+                border: 1px solid black !important;
+            }
+
+            .fc-col-header {
+                border: 1px solid black !important;
+            }
+
+            .fc-day-today {
+                background-color: rgb(193, 193, 108) !important;
+                border: 1px solid black !important;
+            }
+
+            .fc-day-future {
+                background-color: rgb(255, 239, 239) !important;
+                border: 1px solid black !important;
+            }
+
+            .fc-day-past {
+                background-color: rgb(223, 223, 223) !important;
+                border: 1px solid black !important;
             }
 
             #calendar {
@@ -35,15 +58,41 @@
                     locale: 'es',
                     events: @json($citas),
                     eventClick: function(info) {
-                        // Obtener la descripción de la cita
+                        var now = new Date();
+                        var eventStart = new Date(info.event.start);
                         var descripcion = info.event.extendedProps.descripcion;
 
-                        // Mostrar la descripción en un alert o en un modal
-                        alert('Descripción de la cita: ' + descripcion); // O aquí podrías abrir un modal
+                        if (eventStart > now) {
+                            // Crear un formulario oculto
+                            var form = document.createElement('form');
+                            form.method = 'POST';
+                            form.action = "{{ route('send.sms') }}";
+
+                            // Agregar el token CSRF de Laravel
+                            var csrfInput = document.createElement('input');
+                            csrfInput.type = 'hidden';
+                            csrfInput.name = '_token';
+                            csrfInput.value = "{{ csrf_token() }}";
+                            form.appendChild(csrfInput);
+
+                            // Agregar el mensaje al formulario
+                            var messageInput = document.createElement('input');
+                            messageInput.type = 'hidden';
+                            messageInput.name = 'message';
+                            messageInput.value = descripcion;
+                            form.appendChild(messageInput);
+
+                            // Agregar el formulario al cuerpo y enviarlo
+                            document.body.appendChild(form);
+                            form.submit();
+                        } else {
+                            alert("Esta Cita ya ha preescrito");
+                        }
                     }
                 });
                 calendar.render();
             });
         </script>
     @endpush
+
 </div>
