@@ -34,6 +34,8 @@ Route::middleware([
         $citas = Cita_Medica::all();
         return view('dashboard', compact('citas'));
     })->name('dashboard');
+
+    //Rutas de Consultas accesibles para todos los usuarios
     Route::prefix('consultas')->group(function () {
         Route::get('/{consulta}', [ConsultaController::class, 'show'])->name('consultas.show');
         Route::get('/', [ConsultaController::class, 'index'])->name('consultas.index');
@@ -45,6 +47,14 @@ Route::middleware([
         Route::get('/', [DoctorController::class, 'index'])->name('doctores.index');
         Route::get('/create', [DoctorController::class, 'create'])->name('doctores.create');
         Route::post('/', [DoctorController::class, 'store'])->name('doctores.store');
+    });
+
+    //Rutas de Recetas accesibles para todos los usuarios
+    Route::prefix('recetas')->group(function () {
+        Route::get('/', [RecetaController::class, 'index'])->name('recetas.index');
+        Route::get('/create', [RecetaController::class, 'create'])->name('recetas.create');
+        Route::post('/', [RecetaController::class, 'store'])->name('recetas.store');
+        Route::get('/{receta}', [RecetaController::class, 'show'])->name('recetas.show');
     });
 });
 
@@ -60,6 +70,8 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
      *   return "Hola";
      * })->name('admin.dashboard');
      */
+
+    //Rutas de Consultas accesibles solo para los administradores
     Route::prefix('consultas')->group(function () {
         //Route::get('/create', [ConsultaController::class, 'create'])->name('consultas.create');
         //Route::post('/', [ConsultaController::class, 'store'])->name('consultas.store');
@@ -74,6 +86,15 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
     });
     Route::get('/citas/create', [CitaMedicaController::class, 'create'])->name('citas.create');
     Route::post('/citas', [CitaMedicaController::class, 'store'])->name('citas.store');
+
+    //Rutas de Medicamentos accesibles solo para los administradores
+    Route::prefix('recetas')->group(function () {
+        //Route::get('/create', [RecetaController::class, 'create'])->name('recetas.create');
+        //Route::post('/', [RecetaController::class, 'store'])->name('recetas.store');
+        Route::get('/{receta}/edit', [RecetaController::class, 'edit'])->name('recetas.edit');
+        Route::put('/{receta}', [RecetaController::class, 'update'])->name('recetas.update');
+        Route::delete('/{receta}', [RecetaController::class, 'destroy'])->name('recetas.destroy');
+    });
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {
