@@ -40,7 +40,7 @@
                             <select name="cita" id="cita-med" class="cita-select">
                                 @foreach ($citas as $cita)
                                     <option value="{{ $cita->id }}">
-                                        {{ $cita->user->name }} a las {{ $cita->fecha_hora }}</option>
+                                        {{ $cita->user->nif }} a las {{ $cita->fecha_hora }}</option>
                                 @endforeach
                             </select>
                             <button type="submit">Nueva Receta de una Cita</button>
