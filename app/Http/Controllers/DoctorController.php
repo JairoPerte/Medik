@@ -35,7 +35,7 @@ class DoctorController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'nif' => 'required|unique:doctores,nif|max:20',
+            'nif' => 'required|unique:doctor,nif|max:20',
             'edad' => 'required|integer|min:25',
             'numtel' => 'required|string|max:20',
         ]);
@@ -48,6 +48,7 @@ class DoctorController extends Controller
     // Editar un doctor (Solo Admin)
     public function edit($id)
     {
+        $doctor = Doctor::findOrFail($id);
         return view('doctores.edit', compact('doctor'));
     }
 
@@ -57,7 +58,7 @@ class DoctorController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'nif' => 'required|max:20|unique:doctores,nif,' . $id,
+            'nif' => 'required|max:20|unique:doctor,nif,' . $id,
             'edad' => 'required|integer|min:25',
             'numtel' => 'required|string|max:20',
         ]);
