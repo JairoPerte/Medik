@@ -15,3 +15,8 @@ MAIL_PASSWORD=${apisecret-mailjet}
 MAIL_FROM_ADDRESS=${correo-mailjet}
 MAILJET_APIKEY=${api-mailjet}
 MAILJET_APISECRET=${apisecret-mailjet}
+
+Y Tambien configura tu Twilio, tambien al env:
+TWILIO_SID=${twilio_sid}
+TWILIO_AUTH_TOKEN=${twilio_auth_token}
+TWILIO_PHONE=${wilio_phone_number}

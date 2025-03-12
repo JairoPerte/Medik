@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h1 class="text-2xl font-bold mb-4">Registrar Nueva Consulta</h1>
+                <h1 class="text-2xl font-bold mb-4">Registrar Nuevo Doctor</h1>
 
                 @if ($errors->any())
                     <div class="mb-4 bg-red-100 text-red-700 p-3 rounded">
@@ -21,40 +21,50 @@
                     </div>
                 @endif
 
-                <form action="{{ route('consultas.store') }}" method="POST">
+                <form action="{{ route('doctores.store') }}" method="POST">
                     @csrf
 
-                    <!-- Número de Consulta -->
+                    <!-- NIF -->
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Número de Consulta:</label>
-                        <input type="number" name="num" value="{{ old('num') }}" required
+                        <label class="block text-gray-700 font-bold mb-2">NIF:</label>
+                        <input type="text" name="nif" value="{{ old('nif') }}" maxlength="10" required
                             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
-                    <!-- Tipo de Sala -->
+                    <!-- Nombre -->
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Tipo de Sala:</label>
-                        <input type="text" name="tipoSala" value="{{ old('tipoSala') }}" required
+                        <label class="block text-gray-700 font-bold mb-2">Nombre:</label>
+                        <input type="text" name="nombre" value="{{ old('nombre') }}" maxlength="40" required
                             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
-                    <!-- Centro Médico -->
+                    <!-- Apellido -->
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2">Centro Médico:</label>
-                        <select name="centro_medico_id" required
+                        <label class="block text-gray-700 font-bold mb-2">Apellido:</label>
+                        <input type="text" name="apellido" value="{{ old('apellido') }}" maxlength="60" required
                             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="" disabled selected>Selecciona un centro médico</option>
-                            @foreach ($centrosMedicos as $centro)
-                                <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
-                            @endforeach
-                        </select>
+                    </div>
+
+                    <!-- Edad -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2">Edad:</label>
+                        <input type="number" name="edad" value="{{ old('edad') }}" min="0" max="999"
+                            required
+                            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <!-- Número de Teléfono -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2">Número de Teléfono:</label>
+                        <input type="text" name="numtel" value="{{ old('numtel') }}" maxlength="15" required
+                            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <!-- Botones -->
                     <div class="flex gap-4 mt-6">
                         <button type="submit"
                             class="bg-gray-500 hover:bg-gray-700 text-black font-bold py-2 px-4 rounded">
-                            Guardar Consulta
+                            Guardar
                         </button>
                         <a href="{{ route('consultas.index') }}"
                             class="bg-gray-500 hover:bg-gray-700 text-black font-bold py-2 px-4 rounded">

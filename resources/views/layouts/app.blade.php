@@ -17,6 +17,49 @@
 
     <!-- Styles -->
     @livewireStyles
+    <style>
+        .bg-white {
+            background-color: #1f2937;
+        }
+
+        .font-bold {
+            color: #d1d5db;
+        }
+
+        .text-gray-700 {
+            color: #9a9b9e;
+        }
+
+        .text-green-500.ml-2 {
+            color: yellow
+        }
+
+        td.border.px-4.py-2 {
+            color: #9a9b9e;
+        }
+
+        .bg-white>div.mb-4>p {
+            color: #9a9b9e;
+        }
+
+        .bg-blue-500 {
+            background-color: #4674b6;
+            transition: background 0.1s linear;
+        }
+
+        .bg-blue-500:hover {
+            background-color: #29456c;
+        }
+
+        .bg-red-500 {
+            background-color: #b65346;
+            transition: background 0.1s linear;
+        }
+
+        .bg-red-500:hover {
+            background-color: #782216;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased">
