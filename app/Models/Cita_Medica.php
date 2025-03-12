@@ -53,6 +53,6 @@ class Cita_Medica extends Model
 
     public function centroMedico()
     {
-        return $this->belongsTo(Centro_Medico::class);
+        return $this->belongsTo(Centro_Medico::class, 'centro_medico_id');
     }
 }

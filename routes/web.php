@@ -50,9 +50,29 @@ Route::middleware([
         Route::post('/', [DoctorController::class, 'store'])->name('doctores.store');
     });
 
-    // Rutas para Historial de Citas
-    Route::get('/historial-citas', [CitaMedicaController::class, 'index'])->name('historial.citas');
+    // Rutas de Recetas accesibles para todos los usuarios
+    Route::prefix('recetas')->group(function () {
+        Route::get('/', [RecetaController::class, 'index'])->name('recetas.index');
+        Route::get('/create', [RecetaController::class, 'create'])->name('recetas.create');
+        Route::post('/', [RecetaController::class, 'store'])->name('recetas.store');
+        Route::get('/{receta}', [RecetaController::class, 'show'])->name('recetas.show');
+    });
+
+    // Rutas de Citas Médicas accesibles para todos los usuarios
+    Route::prefix('citas')->group(function () {
+        Route::get('/', [CitaMedicaController::class, 'index'])->name('citas.index');
+        Route::get('/create', [CitaMedicaController::class, 'create'])->name('citas.create');
+        Route::post('/', [CitaMedicaController::class, 'store'])->name('citas.store');
+        Route::get('/{citaMedica}', [CitaMedicaController::class, 'show'])->name('citas.show');
+    });
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // Ruta para el historial de citas
+    Route::get('/user/historial-medico', [CitaMedicaController::class, 'historial'])->name('historial.citas');
+});
+
+
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/admin/create', [])->name('admin.create');
