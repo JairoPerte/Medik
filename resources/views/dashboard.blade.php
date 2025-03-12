@@ -23,14 +23,6 @@
                                 <button type="submit">Ir a Doctores</button>
                             </form>
                             |
-                            <form action="/centro-medico" method="get">
-                                <button type="submit">Ir a Centro Medico</button>
-                            </form>
-                            |
-                            <form action="/recetas" method="get">
-                                <button type="submit">Ir a Recetas</button>
-                            </form>
-                            |
                             <form action="/citas/create">
                                 <button type="submit">Crear cita</button>
                             </form>
@@ -43,7 +35,7 @@
                                         {{ $cita->user->nif }} a las {{ $cita->fecha_hora }}</option>
                                 @endforeach
                             </select>
-                            <button type="submit">Nueva Receta de una Cita</button>
+                            <button type="submit">Asignar Receta</button>
                         </form>
 
                         @if (session('success'))
@@ -64,6 +56,7 @@
                         #seccion-upper {
                             margin: 20px auto;
                             width: 90%;
+                            line-height: 45px
                         }
 
                         #botones {
@@ -73,6 +66,10 @@
                             gap: 10px;
                             flex-wrap: wrap;
                             font-family: Arial, Helvetica, sans-serif
+                        }
+
+                        select {
+                            margin-right: 30px;
                         }
 
                         .cita-select {
