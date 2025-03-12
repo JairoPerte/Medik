@@ -43,7 +43,7 @@ class Cita_Medica extends Model
 
     public function paciente()
     {
-        return $this->belongsTo(User::class, 'user_id'); 
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function medico()
@@ -53,6 +53,6 @@ class Cita_Medica extends Model
 
     public function centroMedico()
     {
-        return $this->belongsTo(Centro_Medico::class);
+        return $this->belongsTo(Centro_Medico::class, 'centro_medico_id');
     }
 }
