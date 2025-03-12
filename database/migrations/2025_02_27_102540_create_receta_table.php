@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date("fechaIni");
             $table->date("fechaCad");
+            $table->foreignId('cita_id')->nullable()->constrained('cita_medica')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

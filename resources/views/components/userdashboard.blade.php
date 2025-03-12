@@ -1,11 +1,5 @@
 <div id="seccion-upper">
     <div id="botones">
-        <form action="/user/citas" method="get">
-            <button type="submit">Ver Citas Pendientes</button>
-        </form>
-
-        |
-
         <form action="/user/historial-medico" method="get">
             <button>Ver Historial Medico</button>
         </form>

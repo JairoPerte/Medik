@@ -27,7 +27,7 @@
         }
 
         .text-gray-700 {
-            color: #9a9b9e;
+            color: #9a9b9e !important;
         }
 
         .text-green-500.ml-2 {

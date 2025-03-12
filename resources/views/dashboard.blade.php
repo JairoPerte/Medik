@@ -36,7 +36,7 @@
                             </form>
                         </div>
 
-                        <form action="/receta/create" method="get" id="obtener-cita" style="color: wheat">
+                        <form action="/recetas/create" method="get" id="obtener-cita" style="color: wheat">
                             <select name="cita" id="cita-med" class="cita-select">
                                 @foreach ($citas as $cita)
                                     <option value="{{ $cita->id }}">
@@ -45,6 +45,18 @@
                             </select>
                             <button type="submit">Nueva Receta de una Cita</button>
                         </form>
+
+                        @if (session('success'))
+                            <div id="success-message" style="color: green; transition: opacity 1s;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div id="error-message" style="color: red; transition: opacity 1s;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </div>
 
 
@@ -67,6 +79,26 @@
                             color: black
                         }
                     </style>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            setTimeout(function() {
+                                let successMessage = document.getElementById('success-message');
+                                let errorMessage = document.getElementById('error-message');
+
+                                if (successMessage) {
+                                    successMessage.style.opacity = '0';
+                                    setTimeout(() => successMessage.style.display = 'none',
+                                        1000); // Elimina el elemento tras desvanecerse
+                                }
+
+                                if (errorMessage) {
+                                    errorMessage.style.opacity = '0';
+                                    setTimeout(() => errorMessage.style.display = 'none', 1000);
+                                }
+                            }, 2000); // Espera 2 segundos antes de iniciar la animación
+                        });
+                    </script>
                 @endadmin
             </div>
         </div>

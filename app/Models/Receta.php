@@ -12,13 +12,19 @@ class Receta extends Model
     protected $table = 'receta';
 
     protected $fillable = [
-        'fechaini',
-        'fechacad'
+        'fechaIni',
+        'fechaCad',
+        'cita_id'
     ];
 
     public function medicamentos()
     {
         return $this->belongsToMany(Medicamento::class, 'medicamento_receta')
             ->withPivot('cantidad', 'horario');
+    }
+
+    public function cita()
+    {
+        return $this->belongsTo(Cita_Medica::class, 'cita_id');
     }
 }

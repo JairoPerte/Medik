@@ -39,7 +39,7 @@ class User extends Authenticatable
     //Relaciones
     public function citas()
     {
-        return $this->hasMany(Cita_Medica::class, 'idMedCab');
+        return $this->hasMany(Cita_Medica::class, 'user_id');
     }
 
     function doctor()
